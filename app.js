@@ -25,23 +25,27 @@ const ItemCtrl = (function () {
 })();
 
 const UICtrl = (function () {
+    // UI selectors
+    const UISelectors = {
+        itemList: "#item-list"
+    }
     return {
         populateItemList: function (items) {
-            let html = " ";
+            let html = "";
 
             items.forEach(function (item) {
                 html += `<li class="collection-item" id="item-${item.id}">
                 <strong>${item.name}:</strong><em>${item.calories} Calories</em>
-                <a herf="#" class="secondary-content">
+                <a href="#" class="secondary-content">
                 <i class="edit-item fa fa-pencil"></i>
                 </a>
                 </li>`;
             });
-            document.querySelector("#item-list").innerHTML=html;
+            document.querySelector(UISelectors.itemList).innerHTML = html;
         }
     }
 })();
-const App = (function (ItemCtrl, UiCtrl) {
+const App = (function (ItemCtrl, UICtrl) {
     return{
         init: function () {
             console.log("Initializing App")
@@ -50,6 +54,6 @@ const App = (function (ItemCtrl, UiCtrl) {
             console.log(items)
         }
     }
-})(ItemCtrl,UICtrl);
+})(ItemCtrl, UICtrl);
 
 App.init()
